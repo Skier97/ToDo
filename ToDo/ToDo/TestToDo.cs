@@ -21,21 +21,14 @@ namespace ToDo
             tasks.Add(task);
         }
 
-        public int CompletedTask(Tasks task)
+        public void CompletedTask(Tasks task)
         {
-            if (task == null)
+            for (int i = 0; i < tasks.Count; i++)
             {
-                return (int)ResultStart.error;
-            }
-
-            if (task.MarkTask == false)
-            {
-                task.MarkTask = true;
-                return (int)ResultStart.allGood;
-            }
-            else
-            {
-                return (int)ResultStart.notAvailable;
+                if (tasks[i].Id == task.Id)
+                {
+                    tasks[i].MarkTask = true;
+                }
             }
         }
 

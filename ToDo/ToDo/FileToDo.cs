@@ -14,7 +14,7 @@ namespace ToDo
 
         public FileToDo()
         {
-            tasks = GetAllTasks();
+            tasks = ReadTasksFromFile();
         }
 
         public void AddTask(Tasks task)
@@ -23,33 +23,21 @@ namespace ToDo
             UpdateDbTasks();
         }
 
-        public int CompletedTask(Tasks task)
+        public void CompletedTask(Tasks task)
         {
-            //Избавиться от флагов
-            bool flagTask = false;
-
             for (int i = 0; i < tasks.Count; i++)
             {
                 if (tasks[i].Id == task.Id)
                 {
-                    tasks.Remove(tasks[i]);
-                    flagTask = true;
+                    tasks[i].MarkTask = true;
                 }
             }
 
             UpdateDbTasks();
-
-            if (flagTask == false)
-            {
-                return (int)ResultStart.error;
-            }
-
-            return (int)ResultStart.allGood;
         }
 
-        public List<Tasks> GetAllTasks()
+        private List<Tasks> ReadTasksFromFile()
         {
-            //Избавиться от постоянного чтения из файла
             var colTasks = new List<Tasks>();
             using (var sr = new StreamReader("./fileTasks.txt"))
             {
@@ -63,6 +51,11 @@ namespace ToDo
             return colTasks;
         }
 
+        public List<Tasks> GetAllTasks()
+        {
+            return tasks;
+        }
+
         private void UpdateDbTasks()
         {
             string jsonTasks = JsonConvert.SerializeObject(tasks);
@@ -71,7 +64,5 @@ namespace ToDo
                 sw.WriteLine(jsonTasks);
             }
         }
-
-        //Добавить приватный метод для чтения из файла
     }
 }

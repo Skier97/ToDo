@@ -48,20 +48,13 @@ namespace ToDo
                         break;
                     case 2:
                         Menu.ShowMessage("All unfulfilled tasks of ToDo: ");
-                        dataBase.
                         Menu.ShowUnfulfilledTasks(dataBase.GetAllTasks());
                         var compTask = Menu.GetTask(dataBase.GetAllTasks());
 
                         try
                         {
-                            if (dataBase.CompletedTask(compTask) == (int)ResultStart.allGood)
-                            {
-                                Menu.ShowMessage("This task has been successfully completed!");
-                            }
-                            else
-                            {
-                                Menu.ShowMessage("This task is already completed!!!");
-                            }
+                            dataBase.CompletedTask(compTask);
+                            Menu.ShowMessage("This task has been successfully completed!");
                         }
                         catch (Exception ex)
                         {

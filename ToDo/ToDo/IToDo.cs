@@ -9,7 +9,7 @@ namespace ToDo
     interface IToDo
     {
         void AddTask(Tasks task);
-        int CompletedTask(Tasks task);
+        void CompletedTask(Tasks task);
         List<Tasks> GetAllTasks(); 
     }
 }
