@@ -48,7 +48,6 @@ namespace ToDo
 
         public List<Tasks> GetAllTasks()
         {
-
             var colTasks = new List<Tasks>();
             using (var sr = new StreamReader("./fileTasks.txt"))
             {

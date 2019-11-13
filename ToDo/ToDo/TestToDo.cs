@@ -12,8 +12,8 @@ namespace ToDo
 
         public TestToDo()
         {
-            tasks = new List<Tasks>() { new Tasks("Put a christmas tree", 2019, 12, 30), new Tasks("Celebrate birthday", 2019, 12, 17),
-                    new Tasks("Go to Sochi", 2019, 11, 21) };
+            tasks = new List<Tasks>() { new Tasks("Put a christmas tree", new DateTime(2019, 12, 30)), new Tasks("Celebrate birthday", new DateTime(2019, 12, 17)),
+                    new Tasks("Go to Sochi", new DateTime(2019, 11, 21)) };
         }
 
         public void AddTask(Tasks task)

@@ -7,3 +7,12 @@ C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\obj\Debug\ToDo.c
 C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\obj\Debug\ToDo.csproj.CopyComplete
 C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\obj\Debug\ToDo.exe
 C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\obj\Debug\ToDo.pdb
+C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\ToDo\obj\Debug\ToDo.csprojAssemblyReference.cache
+C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\ToDo\obj\Debug\ToDo.exe
+C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\ToDo\obj\Debug\ToDo.pdb
+C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\ToDo\bin\Debug\ToDo.exe.config
+C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\ToDo\bin\Debug\ToDo.exe
+C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\ToDo\bin\Debug\ToDo.pdb
+C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\ToDo\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\ToDo\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Пользователь\Desktop\Projects VS\ToDo\ToDo\ToDo\obj\Debug\ToDo.csproj.CopyComplete

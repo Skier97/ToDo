@@ -11,10 +11,10 @@ namespace ToDo
         public bool MarkTask { get; set; }
         public Guid Id { get; private set; }
 
-        public Tasks(string nameTask, int year, int month, int day)
+        public Tasks(string nameTask, DateTime date)
         {
             this.NameTask = nameTask;
-            this.DateTask = new DateTime(year, month, day);
+            this.DateTask = date;
             this.MarkTask = false;
             this.Id = Guid.NewGuid();
         }

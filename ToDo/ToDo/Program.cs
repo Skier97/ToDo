@@ -26,7 +26,8 @@ namespace ToDo
                         int dayTask = Menu.GetUserInt("Day task: ");
                         int monthTask = Menu.GetUserInt("Month task: ");
                         int yearTask = Menu.GetUserInt("Year task: ");
-                        Tasks task = new Tasks(nameTask, yearTask, monthTask, dayTask);
+                        var date = new DateTime(yearTask, monthTask, dayTask);
+                        Tasks task = new Tasks(nameTask, date);
 
                         try
                         {
