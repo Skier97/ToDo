@@ -10,6 +10,6 @@ namespace ToDo
     {
         void AddTask(Tasks task);
         int CompletedTask(Tasks task);
-        List<Tasks> GetAllTasks();
+        List<Tasks> GetAllTasks(); 
     }
 }

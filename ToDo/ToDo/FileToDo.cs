@@ -25,6 +25,7 @@ namespace ToDo
 
         public int CompletedTask(Tasks task)
         {
+            //Избавиться от флагов
             bool flagTask = false;
 
             for (int i = 0; i < tasks.Count; i++)
@@ -48,6 +49,7 @@ namespace ToDo
 
         public List<Tasks> GetAllTasks()
         {
+            //Избавиться от постоянного чтения из файла
             var colTasks = new List<Tasks>();
             using (var sr = new StreamReader("./fileTasks.txt"))
             {
@@ -69,5 +71,7 @@ namespace ToDo
                 sw.WriteLine(jsonTasks);
             }
         }
+
+        //Добавить приватный метод для чтения из файла
     }
 }

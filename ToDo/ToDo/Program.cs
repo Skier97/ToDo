@@ -8,6 +8,12 @@ namespace ToDo
 {
     class Program
     {
+        /// <summary>
+        /// Добавить новый пункт меню
+        /// Добавить Таск на сегодня 
+        /// Создать новый класс TodayTask и унаследоваться от Таск у которого в конструкторе будет дата автоматически = сегодня
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to ToDo!");
@@ -42,6 +48,7 @@ namespace ToDo
                         break;
                     case 2:
                         Menu.ShowMessage("All unfulfilled tasks of ToDo: ");
+                        dataBase.
                         Menu.ShowUnfulfilledTasks(dataBase.GetAllTasks());
                         var compTask = Menu.GetTask(dataBase.GetAllTasks());
 
