@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ToDo
 {
-    enum ResultStart
+    enum ResultStart //Зачем?
     {
         error = -1,
         notAvailable = 0,

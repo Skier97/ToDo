@@ -43,7 +43,7 @@ namespace ToDo
             {
                 string line;
 
-                while ((line = sr.ReadLine()) != null)
+                while ((line = sr.ReadLine()) != null) //зачем?
                 {
                     colTasks = JsonConvert.DeserializeObject<List<Tasks>>(line);
                 }
@@ -59,7 +59,7 @@ namespace ToDo
         private void UpdateDbTasks()
         {
             string jsonTasks = JsonConvert.SerializeObject(tasks);
-            using (StreamWriter sw = new StreamWriter($"./fileTasks.txt", false, System.Text.Encoding.Default))
+            using (StreamWriter sw = new StreamWriter($"./fileTasks.txt", false, System.Text.Encoding.Default)) //зачем System.Text?
             {
                 sw.WriteLine(jsonTasks);
             }

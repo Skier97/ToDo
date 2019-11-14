@@ -8,6 +8,7 @@ namespace ToDo
 {
     static class Menu
     {
+        //вынести из метода ввод юзера: либо переименовать метод
         public static int WriteMenu()
         {
             Console.WriteLine("Menu:");
@@ -24,7 +25,8 @@ namespace ToDo
 
         public static string GetUserString(string text)
         {
-            while(true)
+            //избавиться от бесконечного цикла/ можно вынести проверку на пустую строку в while
+            while (true)
             {
                 try
                 {
@@ -45,6 +47,7 @@ namespace ToDo
 
         public static int GetUserInt(string text)
         {
+            //избавиться от бесконечного цикла, например https://stackoverflow.com/questions/4804968/how-can-i-validate-console-input-as-integers
             while (true)
             {
                 try
@@ -88,10 +91,10 @@ namespace ToDo
         {
             for (int i = 0; i < tasks.Count; i++)
             {
-                var diffDays = (tasks[i].DateTask - DateTime.Today).TotalDays;
+                var diffDays = (tasks[i].DateTask - DateTime.Today).TotalDays;//вынести в отдельный метод
                 if ((tasks[i].MarkTask == false) && (diffDays == 0))
                 {
-                    Console.Write($"\n{i + 1} - Name: {tasks[i].NameTask}, Date: {tasks[i].DateTask}");
+                    Console.Write($"\n{i + 1} - Name: {tasks[i].NameTask}, Date: {tasks[i].DateTask}"); //вынести в отдельный метод
                 }
             }
 
@@ -113,8 +116,8 @@ namespace ToDo
 
         public static Tasks GetTask(List<Tasks> colTasks)
         {
-            int userInput = Menu.GetUserInt("Input number: ");
-            return colTasks[userInput - 1];
+            int userInput = Menu.GetUserInt("Input number: "); //Зачем Menu? 
+            return colTasks[userInput - 1]; // если юзер введет 0 или 1000?
         }
     }
 }

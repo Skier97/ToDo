@@ -8,7 +8,7 @@ namespace ToDo
     {
         public string NameTask { get; set; }
         public DateTime DateTask { get; set; }
-        public bool MarkTask { get; set; }
+        public bool MarkTask { get; set; } //Не самое удачное наименование
         public Guid Id { get; private set; }
 
         public Tasks(string nameTask, DateTime date)
