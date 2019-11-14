@@ -27,52 +27,27 @@ namespace ToDo
 
                 switch (paragraph)
                 {
-                    case 1:
-                        string nameTask = Menu.GetUserString("Name task: ");
-                        int dayTask = Menu.GetUserInt("Day task: ");
-                        int monthTask = Menu.GetUserInt("Month task: ");
-                        int yearTask = Menu.GetUserInt("Year task: ");
-                        var date = new DateTime(yearTask, monthTask, dayTask);
-                        Tasks task = new Tasks(nameTask, date);
-
-                        try
-                        {
-                            dataBase.AddTask(task);
-                            Menu.ShowMessage("This task has been succesfully added!");
-                        }
-                        catch (Exception ex)
-                        {
-                            Menu.ShowError(ex.Message);
-                        }
+                    case (int)SelectionAction.AddTask:
+                        AddTask(dataBase);
 
                         break;
-                    case 2:
-                        Menu.ShowMessage("All unfulfilled tasks of ToDo: ");
-                        Menu.ShowUnfulfilledTasks(dataBase.GetAllTasks());
-                        var compTask = Menu.GetTask(dataBase.GetAllTasks());
-
-                        try
-                        {
-                            dataBase.CompletedTask(compTask);
-                            Menu.ShowMessage("This task has been successfully completed!");
-                        }
-                        catch (Exception ex)
-                        {
-                            Menu.ShowError(ex.Message);
-                        }
+                    case (int)SelectionAction.CompletedTask:
+                        CompletedTask(dataBase);
 
                         break;
-                    case 3:
-                        Menu.ShowMessage("All tasks on the week: ");
-                        Menu.ShowTaskWeek(dataBase.GetAllTasks());
+                    case (int)SelectionAction.ShowTasksWeek:
+                        ShowTasksWeek(dataBase);
                         
                         break;
-                    case 4:
-                        Menu.ShowMessage("All tasks today: ");
-                        Menu.ShowTasksToday(dataBase.GetAllTasks());
+                    case (int)SelectionAction.ShowTasksToday:
+                        ShowTasksToday(dataBase);
 
                         break;
-                    case 5:
+                    case (int)SelectionAction.AddTaskToday:
+                        AddTaskToday(dataBase);
+
+                        break;
+                    case (int)SelectionAction.Exit:
                         flag = false;
                         break;
                     default:
@@ -80,6 +55,71 @@ namespace ToDo
                         break;
                 }
             } while (flag == true);
+        }
+
+        static void AddTask(FileToDo dataBase)
+        {
+            string nameTask = Menu.GetUserString("Name task: ");
+            int dayTask = Menu.GetUserInt("Day task: ");
+            int monthTask = Menu.GetUserInt("Month task: ");
+            int yearTask = Menu.GetUserInt("Year task: ");
+            var date = new DateTime(yearTask, monthTask, dayTask);
+            Tasks task = new Tasks(nameTask, date);
+
+            try
+            {
+                dataBase.AddTask(task);
+                Menu.ShowMessage("This task has been succesfully added!");
+            }
+            catch (Exception ex)
+            {
+                Menu.ShowError(ex.Message);
+            }
+        }
+
+        static void CompletedTask(FileToDo dataBase)
+        {
+            Menu.ShowMessage("All unfulfilled tasks of ToDo: ");
+            Menu.ShowUnfulfilledTasks(dataBase.GetAllTasks());
+            var compTask = Menu.GetTask(dataBase.GetAllTasks());
+
+            try
+            {
+                dataBase.CompletedTask(compTask);
+                Menu.ShowMessage("This task has been successfully completed!");
+            }
+            catch (Exception ex)
+            {
+                Menu.ShowError(ex.Message);
+            }
+        }
+
+        static void ShowTasksWeek(FileToDo dataBase)
+        {
+            Menu.ShowMessage("All tasks on the week: ");
+            Menu.ShowTaskWeek(dataBase.GetAllTasks());
+        }
+
+        static void ShowTasksToday(FileToDo dataBase)
+        {
+            Menu.ShowMessage("All tasks today: ");
+            Menu.ShowTasksToday(dataBase.GetAllTasks());
+        }
+
+        static void AddTaskToday(FileToDo dataBase)
+        {
+            string nameT = Menu.GetUserString("Name task: ");
+            Tasks taskToday = new Tasks(nameT);
+
+            try
+            {
+                dataBase.AddTask(taskToday);
+                Menu.ShowMessage("This task has been succesfully added!");
+            }
+            catch (Exception ex)
+            {
+                Menu.ShowError(ex.Message);
+            }
         }
     }
 }

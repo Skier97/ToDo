@@ -15,31 +15,49 @@ namespace ToDo
             Console.WriteLine("2 - Mark task completed");
             Console.WriteLine("3 - Show tasks on the week");
             Console.WriteLine("4 - Show tasks today");
-            Console.WriteLine("5 - Exit");
-            Console.Write("Input number:");
+            Console.WriteLine("5 - Add task on today");
+            Console.WriteLine("6 - Exit");
+            //Console.Write("Input number:");
 
-            try
-            {
-                int val = int.Parse(Console.ReadLine());
-                return val;
-            }
-            catch
-            {
-                Console.WriteLine("Error!!!");
-                return 0;
-            }
+            return GetUserInt("Input number: ");
         }
 
         public static string GetUserString(string text)
         {
-            Console.Write(text);
-            return Console.ReadLine();
+            while(true)
+            {
+                try
+                {
+                    Console.Write(text);
+                    string retText = Console.ReadLine();
+                    if (retText != "")
+                    {                        
+                        return retText;
+                    }   
+                }
+                catch (Exception ex)
+                {
+                    Menu.ShowError(ex.Message);
+                    Menu.ShowMessage("Try again!\n");
+                }
+            }
         }
 
         public static int GetUserInt(string text)
         {
-            Console.Write(text);
-            return int.Parse(Console.ReadLine());
+            while (true)
+            {
+                try
+                {
+                    Console.Write(text);
+                    return int.Parse(Console.ReadLine());
+                }
+                catch (Exception ex)
+                {
+                    Menu.ShowError(ex.Message);
+                    Menu.ShowMessage("Try again!\n");
+                }
+            }
         }
 
         public static void ShowMessage(string text)

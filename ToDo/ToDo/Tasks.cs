@@ -19,6 +19,14 @@ namespace ToDo
             this.Id = Guid.NewGuid();
         }
 
+        public Tasks(string nameTask)
+        {
+            this.NameTask = nameTask;
+            this.DateTask = DateTime.Today;
+            this.MarkTask = false;
+            this.Id = Guid.NewGuid();
+        }
+
         [JsonConstructor]
         public Tasks(string nameTask, DateTime date, Guid id)
         {
