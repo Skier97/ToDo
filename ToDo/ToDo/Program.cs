@@ -7,13 +7,7 @@ using System.Threading.Tasks;
 namespace ToDo
 {
     class Program
-    {
-        /// <summary>
-        /// Добавить новый пункт меню
-        /// Добавить Таск на сегодня 
-        /// Создать новый класс TodayTask и унаследоваться от Таск у которого в конструкторе будет дата автоматически = сегодня
-        /// </summary>
-        /// <param name="args"></param>
+    {      
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to ToDo!");
@@ -23,7 +17,8 @@ namespace ToDo
 
             do
             {
-                int paragraph = Menu.WriteMenu();
+                Menu.WriteMenu();
+                int paragraph = Menu.GetUserInt("Input number: ");
 
                 switch (paragraph)
                 {
@@ -61,8 +56,11 @@ namespace ToDo
         {
             string nameTask = Menu.GetUserString("Name task: ");
             int dayTask = Menu.GetUserInt("Day task: ");
+            dayTask = Menu.CheckDays(dayTask);
             int monthTask = Menu.GetUserInt("Month task: ");
+            monthTask = Menu.CheckMonth(monthTask);
             int yearTask = Menu.GetUserInt("Year task: ");
+            yearTask = Menu.CheckYear(yearTask);
             var date = new DateTime(yearTask, monthTask, dayTask);
             Tasks task = new Tasks(nameTask, date);
 

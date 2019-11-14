@@ -27,7 +27,7 @@ namespace ToDo
             {
                 if (tasks[i].Id == task.Id)
                 {
-                    tasks[i].MarkTask = true;
+                    tasks[i].AccomplishTask = true;
                 }
             }
         }

@@ -29,7 +29,7 @@ namespace ToDo
             {
                 if (tasks[i].Id == task.Id)
                 {
-                    tasks[i].MarkTask = true;
+                    tasks[i].AccomplishTask = true;
                 }  
             }
 
@@ -41,12 +41,9 @@ namespace ToDo
             var colTasks = new List<Tasks>();
             using (var sr = new StreamReader("./fileTasks.txt"))
             {
-                string line;
+                string line = sr.ReadLine(); 
 
-                while ((line = sr.ReadLine()) != null) //зачем?
-                {
-                    colTasks = JsonConvert.DeserializeObject<List<Tasks>>(line);
-                }
+                colTasks = JsonConvert.DeserializeObject<List<Tasks>>(line);
             }
             return colTasks;
         }
@@ -59,7 +56,7 @@ namespace ToDo
         private void UpdateDbTasks()
         {
             string jsonTasks = JsonConvert.SerializeObject(tasks);
-            using (StreamWriter sw = new StreamWriter($"./fileTasks.txt", false, System.Text.Encoding.Default)) //зачем System.Text?
+            using (StreamWriter sw = new StreamWriter($"./fileTasks.txt", false))
             {
                 sw.WriteLine(jsonTasks);
             }

@@ -8,8 +8,7 @@ namespace ToDo
 {
     static class Menu
     {
-        //вынести из метода ввод юзера: либо переименовать метод
-        public static int WriteMenu()
+        public static void WriteMenu()
         {
             Console.WriteLine("Menu:");
             Console.WriteLine("1- Add task");
@@ -18,49 +17,39 @@ namespace ToDo
             Console.WriteLine("4 - Show tasks today");
             Console.WriteLine("5 - Add task on today");
             Console.WriteLine("6 - Exit");
-            //Console.Write("Input number:");
-
-            return GetUserInt("Input number: ");
         }
 
         public static string GetUserString(string text)
         {
-            //избавиться от бесконечного цикла/ можно вынести проверку на пустую строку в while
-            while (true)
+            string retText = "";
+            do
             {
                 try
                 {
                     Console.Write(text);
-                    string retText = Console.ReadLine();
-                    if (retText != "")
-                    {                        
-                        return retText;
-                    }   
+                    retText = Console.ReadLine();
                 }
                 catch (Exception ex)
                 {
-                    Menu.ShowError(ex.Message);
-                    Menu.ShowMessage("Try again!\n");
+                    ShowError(ex.Message);
+                    ShowMessage("Try again!\n");
                 }
-            }
+            } while (retText == "");
+            return retText;
         }
 
         public static int GetUserInt(string text)
         {
-            //избавиться от бесконечного цикла, например https://stackoverflow.com/questions/4804968/how-can-i-validate-console-input-as-integers
-            while (true)
+            int retValue;
+            ShowMessage(text);
+            string inputUser = Console.ReadLine();
+            while (!Int32.TryParse(inputUser, out retValue))
             {
-                try
-                {
-                    Console.Write(text);
-                    return int.Parse(Console.ReadLine());
-                }
-                catch (Exception ex)
-                {
-                    Menu.ShowError(ex.Message);
-                    Menu.ShowMessage("Try again!\n");
-                }
+                ShowMessage("Error! Try again!\n");
+                ShowMessage(text);
+                inputUser = Console.ReadLine();
             }
+            return retValue;
         }
 
         public static void ShowMessage(string text)
@@ -77,10 +66,10 @@ namespace ToDo
         {
             for (int i = 0; i < tasks.Count; i++)
             {
-                var diffDays = (tasks[i].DateTask - DateTime.Today).TotalDays;
-                if ((tasks[i].MarkTask == false) && (diffDays < 7) && (diffDays >= 0))
+                var diffDays = DaysUntillToday(tasks[i].DateTask);
+                if ((tasks[i].AccomplishTask == false) && (diffDays < 7) && (diffDays >= 0))
                 {
-                    Console.Write($"\n{i + 1} - Name: {tasks[i].NameTask}, Date: {tasks[i].DateTask}");
+                    ShowTask(i, tasks[i]);
                 }
             }
 
@@ -91,21 +80,26 @@ namespace ToDo
         {
             for (int i = 0; i < tasks.Count; i++)
             {
-                var diffDays = (tasks[i].DateTask - DateTime.Today).TotalDays;//вынести в отдельный метод
-                if ((tasks[i].MarkTask == false) && (diffDays == 0))
+                var diffDays = DaysUntillToday(tasks[i].DateTask);
+                if ((tasks[i].AccomplishTask == false) && (diffDays == 0))
                 {
-                    Console.Write($"\n{i + 1} - Name: {tasks[i].NameTask}, Date: {tasks[i].DateTask}"); //вынести в отдельный метод
+                    ShowTask(i, tasks[i]); 
                 }
             }
 
             Console.WriteLine();
         }
 
+        private static void ShowTask(int i, Tasks task)
+        {
+            Console.Write($"\n{i + 1} - Name: {task.NameTask}, Date: {task.DateTask}");
+        }
+
         public static void ShowUnfulfilledTasks(List<Tasks> tasks)
         {
             for (int i = 0; i < tasks.Count; i++)
             {
-                if ((tasks[i].MarkTask == false))
+                if ((tasks[i].AccomplishTask == false))
                 {
                     Console.Write($"\n{i + 1} - Name: {tasks[i].NameTask}, Date: {tasks[i].DateTask}");
                 }
@@ -116,8 +110,48 @@ namespace ToDo
 
         public static Tasks GetTask(List<Tasks> colTasks)
         {
-            int userInput = Menu.GetUserInt("Input number: "); //Зачем Menu? 
-            return colTasks[userInput - 1]; // если юзер введет 0 или 1000?
+            int userInput = GetUserInt("Input number: ");
+            while ((userInput > colTasks.Count) || (userInput < 1))
+            {
+                ShowMessage("Error range tasks! Try again!\n");
+                userInput = GetUserInt("Input number: ");
+            }
+            return colTasks[userInput - 1]; 
+        }
+
+        private static double DaysUntillToday(DateTime dayTask)
+        {
+            return (dayTask - DateTime.Today).TotalDays;
+        }
+
+        public static int CheckDays(int day)
+        {
+            while ((day < 1) || (day > 31))
+            {
+                ShowError("Error range days!");
+                day = int.Parse(Console.ReadLine());
+            }
+            return day;
+        }
+
+        public static int CheckMonth(int month)
+        {
+            while ((month < 1) || (month > 12))
+            {
+                ShowError("Error range month!");
+                month = int.Parse(Console.ReadLine());
+            }
+            return month;
+        }
+
+        public static int CheckYear(int year)
+        {
+            while (year < DateTime.Now.Year)
+            {
+                ShowError("Error range year!");
+                year = int.Parse(Console.ReadLine());
+            }
+            return year;
         }
     }
 }

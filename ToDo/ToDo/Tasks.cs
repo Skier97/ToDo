@@ -8,14 +8,14 @@ namespace ToDo
     {
         public string NameTask { get; set; }
         public DateTime DateTask { get; set; }
-        public bool MarkTask { get; set; } //Не самое удачное наименование
+        public bool AccomplishTask { get; set; }
         public Guid Id { get; private set; }
 
         public Tasks(string nameTask, DateTime date)
         {
             this.NameTask = nameTask;
             this.DateTask = date;
-            this.MarkTask = false;
+            this.AccomplishTask = false;
             this.Id = Guid.NewGuid();
         }
 
@@ -23,7 +23,7 @@ namespace ToDo
         {
             this.NameTask = nameTask;
             this.DateTask = DateTime.Today;
-            this.MarkTask = false;
+            this.AccomplishTask = false;
             this.Id = Guid.NewGuid();
         }
 
@@ -32,7 +32,7 @@ namespace ToDo
         {
             this.NameTask = nameTask;
             this.DateTask = date;
-            this.MarkTask = false;
+            this.AccomplishTask = false;
             this.Id = id;
         }
     }
